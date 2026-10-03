@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Hub</title>
+  <meta name="description" content="Browse and download Excel dashboards by category.">
+  <meta name="theme-color" content="#F62440">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Sticky top bar: brand, category tabs (built by js/app.js), search, menu.
+       On phones the tabs move into the menu and search becomes an icon. -->
+  <header class="bar">
+    <a class="brand" href="#All"><img src="assets/logo.svg" alt="" width="30" height="30"><span>Dashboard Hub</span></a>
+    <nav id="tabs" class="tabs" aria-label="Dashboard categories"></nav>
+
+    <div id="search-wrap" class="search">
+      <input id="search" type="search" placeholder="Search dashboards" aria-label="Search dashboards">
+      <button id="search-close" class="icon-btn search-close" type="button" aria-label="Close search">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <button id="search-btn" class="icon-btn search-btn" type="button" aria-label="Search dashboards">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    </button>
+
+    <div class="menu-wrap">
+      <button id="menu-btn" class="icon-btn" type="button" aria-label="Open menu" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/>
+          <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+          <circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+        </svg>
+      </button>
+      <div id="menu" class="menu" hidden>
+        <div id="menu-tabs" class="menu-tabs"></div>
+        <button id="theme" class="menu-item" type="button" role="switch" aria-checked="false">
+          <span>Dark theme</span><span class="switch"></span>
+        </button>
+        <!-- Add more menu items here, for example:
+             <a class="menu-item" href="settings.html">Settings</a> -->
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Top heading and paragraph (edit the text freely) -->
+    <section class="hero">
+      <h1>Excel dashboards, ready to download</h1>
+      <p>Pick a category, see what each dashboard covers, and download the Excel file you need.</p>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+
+    <!-- Closing heading and paragraph (edit the text freely) -->
+    <section class="hero hero-end">
+      <h2>Can't find the dashboard you need?</h2>
+      <p>Try another category or a different search word. More dashboards will appear here as they are posted.</p>
+    </section>
+  </main>
+
+  <!-- Footer: styled as the opposite of the page theme on purpose (dark on light, light on dark) -->
+  <footer class="foot">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#All"><img src="assets/logo.svg" alt="" width="30" height="30"><span>Dashboard Hub</span></a>
+        <p>Excel dashboards grouped by type. Browse, pick one and download it.</p>
+      </div>
+      <nav aria-label="Company">
+        <h3>Company</h3>
+        <a href="about.html">About us</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="mailto:hello@example.com">Contact</a>
+      </nav>
+      <nav aria-label="Dashboard categories" id="foot-cats">
+        <h3>Dashboards</h3>
+      </nav>
+    </div>
+    <p class="foot-note">&copy; <span id="year"></span> Dashboard Hub. All rights reserved.</p>
+  </footer>
+
+  <!-- Large preview: opens when a card's picture is tapped. Circle arrows or the left/right keys move between dashboards. -->
+  <dialog id="preview" class="preview">
+    <div class="preview-body">
+      <div id="preview-stage" class="preview-stage">
+        <img id="preview-img" alt="">
+        <div id="preview-empty" class="preview-empty"></div>
+        <button id="preview-prev" class="arrow arrow-prev" type="button" aria-label="Previous dashboard">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button id="preview-next" class="arrow arrow-next" type="button" aria-label="Next dashboard">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="preview-bar">
+        <strong id="preview-title"></strong>
+        <a id="preview-dl" class="dl" href="#" download autofocus>Download</a>
+        <button id="preview-close" class="icon-btn" type="button" aria-label="Close preview">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
